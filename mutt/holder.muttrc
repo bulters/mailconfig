@@ -1,0 +1,9 @@
+###
+# Holder specific config
+###
+color status green default
+
+set from = "jeroen.bulters@holder.nl"
+set record = "=Holder/Sent Messages"
+
+macro index A "<save-message>=Holder/Archief<enter>"

@@ -1,0 +1,12 @@
+###
+# Bulters specific config
+###
+
+color status cyan default
+
+set from = "jeroen@bulte.rs"
+set record = "=Bulters/sent"
+set postponed = "=Bulters/drafts"
+
+macro index A "<save-message>=Bulters/Archief<enter>"
+

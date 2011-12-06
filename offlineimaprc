@@ -1,0 +1,36 @@
+[general]
+ui = ttyui
+accounts = Bulters,Holder
+pythonfile=~/mailconfig/keychain.py
+
+[Account Bulters]
+localrepository = Bulters-Local
+remoterepository = Bulters-Remote
+
+[Account Holder]
+localrepository = Holder-Local
+remoterepository = Holder-Remote
+
+[Repository Bulters-Local]
+type = Maildir
+localfolders = ~/Mail/Bulters
+
+[Repository Holder-Local]
+type = Maildir
+localfolders = ~/Mail/Holder
+
+[Repository Bulters-Remote]
+type = Gmail
+remoteuser = jeroen@bulte.rs
+remotepasseval = get_keychain_pass(account="jeroen@bulte.rs", server="imap.gmail.com")
+realdelete = no
+nametrans = lambda folder: re.sub('.*Spam$', 'spam', re.sub('.*Drafts$', 'drafts', re.sub('.*Sent Mail$', 'sent', re.sub('.*Starred$', 'flagged', re.sub('.*Trash$', 'trash', re.sub('.*All Mail$', 'archive', folder))))))
+
+[Repository Holder-Remote]
+type = IMAP
+remotehost = office.holder.nl
+remoteuser = jeroen.bulters
+remotepasseval = get_keychain_pass(account="jeroen.bulters", server="office.holder.nl")
+realdelete = yes
+nametrans = lambda folder: re.sub('.*Spam$', 'spam', re.sub('.*Drafts$', 'drafts', re.sub('.*Sent Mail$', 'sent', re.sub('.*Starred$', 'flagged', re.sub('.*Trash$', 'trash', re.sub('.*All Mail$', 'archive', folder))))))
+

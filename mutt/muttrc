@@ -1,0 +1,46 @@
+set editor = "vim '+/^$'"
+set edit_headers
+set mbox_type = Maildir
+set folder = ~/Mail
+set spoolfile = "+Bulters/INBOX"
+set mail_check = 0
+unset move
+set delete
+unset confirmappend
+set quit
+unset mark_old
+set beep_new
+set realname = "Jeroen Bulters"
+set reply_to
+set sort = threads
+set sort_aux = reverse-last-date-received
+mailboxes +Bulters/INBOX +Bulters/archive +Bulters/sent +Bulters/drafts +Bulters/spam +Bulters/trash
+mailboxes +Holder/INBOX
+
+folder-hook Bulters/* source ~/.mutt/bulters.muttrc
+folder-hook Holder/* source ~/.mutt/holder.muttrc
+
+# COLORS {{{
+color status      cyan          black
+color indicator   black         yellow
+color tree        blue          black
+color error       red           black
+color hdrdefault  black         white
+color header      brightyellow  default  "^(From|Subject):"
+color header      brightcyan    default  ^To:
+color header      brightcyan    default  ^Cc:
+color index       black         red      "~F !~p !~P"
+color index       black         cyan     "~T !~F !~p !~P"
+color body        brightwhite   default  " [;:]-*[})>{(<|]
+color body        blue          default  "( *[-+=#*~_]){6,}"
+color signature   cyan          default
+color quoted      green         default
+color quoted1     yellow        default
+color quoted2     red           default
+color markers     brightred     default
+#color sidebar_new yellow        default
+#
+
+macro index,pager <f1> "<change-folder>=Bulters/INBOX<enter>"
+macro index,pager <f2> "<change-folder>=Holder/INBOX<enter>"
+
