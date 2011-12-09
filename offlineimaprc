@@ -32,5 +32,6 @@ remotehost = office.holder.nl
 remoteuser = jeroen.bulters
 remotepasseval = get_keychain_pass(account="jeroen.bulters", server="office.holder.nl")
 realdelete = yes
+ssl = yes
 nametrans = lambda folder: re.sub('.*Spam$', 'spam', re.sub('.*Drafts$', 'drafts', re.sub('.*Sent Mail$', 'sent', re.sub('.*Starred$', 'flagged', re.sub('.*Trash$', 'trash', re.sub('.*All Mail$', 'archive', folder))))))
 
