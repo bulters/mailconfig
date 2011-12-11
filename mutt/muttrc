@@ -17,30 +17,35 @@ set sort_aux = reverse-last-date-received
 mailboxes +Bulters/INBOX +Bulters/archive +Bulters/sent +Bulters/drafts +Bulters/spam +Bulters/trash
 mailboxes +Holder/INBOX
 
+# Load correct configuration on mailbox changes.
 folder-hook Bulters/* source ~/.mutt/bulters.muttrc
 folder-hook Holder/* source ~/.mutt/holder.muttrc
 
+# Macro's for switching between mailboxed.
+macro index,pager <f1> "<change-folder>=Bulters/INBOX<enter>"
+macro index,pager <f2> "<change-folder>=Holder/INBOX<enter>"
 # COLORS {{{
-color status      cyan          black
-color indicator   black         yellow
-color tree        blue          black
-color error       red           black
-color hdrdefault  black         white
-color header      brightyellow  default  "^(From|Subject):"
-color header      brightcyan    default  ^To:
-color header      brightcyan    default  ^Cc:
-color index       black         red      "~F !~p !~P"
-color index       black         cyan     "~T !~F !~p !~P"
-color body        brightwhite   default  " [;:]-*[})>{(<|]
-color body        blue          default  "( *[-+=#*~_]){6,}"
-color signature   cyan          default
-color quoted      green         default
-color quoted1     yellow        default
-color quoted2     red           default
-color markers     brightred     default
+#
+# color status      cyan          black
+# color indicator   black         yellow
+# color tree        blue          black
+# color error       red           black
+# color hdrdefault  black         white
+# color header      brightyellow  default  "^(From|Subject):"
+# color header      brightcyan    default  ^To:
+# color header      brightcyan    default  ^Cc:
+# color index       black         red      "~F !~p !~P"
+# color index       black         cyan     "~T !~F !~p !~P"
+# color body        brightwhite   default  " [;:]-*[})>{(<|]
+# color body        blue          default  "( *[-+=#*~_]){6,}"
+# color signature   cyan          default
+# color quoted      green         default
+# color quoted1     yellow        default
+# color quoted2     red           default
+# color markers     brightred     default
+#
 #color sidebar_new yellow        default
 #
 
-macro index,pager <f1> "<change-folder>=Bulters/INBOX<enter>"
-macro index,pager <f2> "<change-folder>=Holder/INBOX<enter>"
+source ~/.mutt/colors.muttrc
 
