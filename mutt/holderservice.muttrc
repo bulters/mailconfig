@@ -1,0 +1,7 @@
+###
+# Holder specific config
+###
+color status green default
+
+set from = "servicedienst@holder.nl"
+set record = "=HolderService/Sent Messages"

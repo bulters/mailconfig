@@ -20,10 +20,12 @@ mailboxes +Holder/INBOX
 # Load correct configuration on mailbox changes.
 folder-hook Bulters/* source ~/.mutt/bulters.muttrc
 folder-hook Holder/* source ~/.mutt/holder.muttrc
+folder-hook HolderService/* source ~/.mutt/holderservice.muttrc
 
 # Macro's for switching between mailboxed.
 macro index,pager <f1> "<change-folder>=Bulters/INBOX<enter>"
 macro index,pager <f2> "<change-folder>=Holder/INBOX<enter>"
+macro index,pager <f3> "<change-folder>=HolderService/INBOX<enter>"
 # COLORS {{{
 #
 # color status      cyan          black

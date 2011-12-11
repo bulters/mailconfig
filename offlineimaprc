@@ -1,6 +1,6 @@
 [general]
 ui = ttyui
-accounts = Bulters,Holder
+accounts = Bulters,Holder,HolderService
 pythonfile=~/mailconfig/keychain.py
 
 [Account Bulters]
@@ -11,6 +11,10 @@ remoterepository = Bulters-Remote
 localrepository = Holder-Local
 remoterepository = Holder-Remote
 
+[Account HolderService]
+localrepository = HolderService-Local
+remoterepository = HolderService-Remote
+
 [Repository Bulters-Local]
 type = Maildir
 localfolders = ~/Mail/Bulters
@@ -18,6 +22,10 @@ localfolders = ~/Mail/Bulters
 [Repository Holder-Local]
 type = Maildir
 localfolders = ~/Mail/Holder
+
+[Repository HolderService-Local]
+type = Maildir
+localfolders = ~/Mail/HolderService
 
 [Repository Bulters-Remote]
 type = Gmail
@@ -35,3 +43,11 @@ realdelete = yes
 ssl = yes
 nametrans = lambda folder: re.sub('.*Spam$', 'spam', re.sub('.*Drafts$', 'drafts', re.sub('.*Sent Mail$', 'sent', re.sub('.*Starred$', 'flagged', re.sub('.*Trash$', 'trash', re.sub('.*All Mail$', 'archive', folder))))))
 
+[Repository HolderService-Remote]
+type = IMAP
+remotehost = office.holder.nl
+remoteuser = servicedienst
+remotepasseval = get_keychain_pass(account="servicedienst", server="office.holder.nl")
+realdelete = yes
+ssl = yes
+folderfilter = lambda foldername: foldername in 'INBOX'
