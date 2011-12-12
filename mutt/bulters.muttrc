@@ -2,7 +2,7 @@
 # Bulters specific config
 ###
 
-color status cyan default
+color status red default
 
 set from = "jeroen@bulte.rs"
 set record = "=Bulters/sent"
