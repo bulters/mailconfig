@@ -38,5 +38,9 @@ macro pager oo |/usr/local/bin/urlview 'call urlview to extract URLs out of a me
 # Mass catch-up to all mail
 macro index .c "T.\n;WN^T.\n" "Mark all messages as read"
 
+# Automagically 'render' html
+auto_view text/html
+
+# Set colors
 source ~/.mutt/colors.muttrc
 
