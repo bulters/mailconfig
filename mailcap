@@ -1,0 +1,8 @@
+text/html; elinks -dump %s ; copiousoutput
+document/pdf; ~/mailconfig/view_attachment.sh %s -
+application/octet-stream; ~/mailconfig/view_attachment.sh %s -
+mime_lookup application/octet-stream
+video/*; ~/mailconfig/view_attachment.sh %s -
+image/*; ~/mailconfig/view_attachment.sh %s -
+application/*; ~/mailconfig/view_attachment.sh %s -
+
