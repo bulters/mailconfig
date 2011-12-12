@@ -50,4 +50,4 @@ remoteuser = servicedienst
 remotepasseval = get_keychain_pass(account="servicedienst", server="office.holder.nl")
 realdelete = yes
 ssl = yes
-folderfilter = lambda foldername: foldername in 'INBOX'
+folderfilter = lambda foldername: foldername in ['INBOX', 'Archief']
