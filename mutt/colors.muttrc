@@ -1,9 +1,3 @@
-
-# title:    vimbrant - a mutt color scheme
-# author:   thayer williams
-# website:  http://cinderwick.ca/
-#
-
 color   normal      white           default     # default colours
 color   index       red             default ~N  # new messages
 color   index       green           default ~F  # flagged messages
@@ -15,7 +9,7 @@ color   attachment  magenta         default     # attachments
 color   signature   brightwhite     default     # sigs
 color   search      brightred       black       # highlight results
 
-color   indicator   magenta         default     # currently highlighted message
+color   indicator   white         cyan     # currently highlighted message
 color   error       red             default     # error messages
 color   status      brightwhite     cyan        # status line (unread msgs, current dir, etc.)
 color   markers     brightwhite     cyan        # shortcut statusline (q:Quit, etc.)
