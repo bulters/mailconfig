@@ -1,3 +1,4 @@
+set sendmail = "/usr/local/bin/msmtp"
 set editor = "vim"
 set edit_headers
 set mbox_type = Maildir
@@ -29,7 +30,7 @@ macro index,pager <f2> "<change-folder>=Holder/INBOX<enter>" 'Change to Holder m
 macro index,pager <f3> "<change-folder>=HolderService/INBOX<enter>" 'Change to Holder Servicedienst mail'
 
 # Macro for quickly fetching mail via offlineimap
-macro index ,f "<shell-escape>/usr/local/bin/offlineimap -c ~/mailconfig/offlineimaprc -q\r" 'Manually fetch mail with offlineimap'
+macro index ,f "<shell-escape>/usr/local/bin/offlineimap -c ~/mailconfig/offlineimaprc -q -u quiet\r" 'Manually fetch mail with offlineimap'
 
 # Open url in browser
 macro index oo |/usr/local/bin/urlview 'call urlview to extract URLs out of a message'
