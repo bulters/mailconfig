@@ -1,7 +1,15 @@
 [general]
 ui = ttyui
-accounts = Bulters,Holder,HolderService
+accounts = Bulters
 pythonfile=~/mailconfig/keychain.py
+
+[mbnames]
+enabled = yes
+filename = ~/.mutt/mailboxes
+header = "mailboxes "
+peritem = "+%(accountname)s/%(foldername)s"
+sep = " "
+footer = "\n"
 
 [Account Bulters]
 localrepository = Bulters-Local
@@ -18,10 +26,22 @@ remoterepository = HolderService-Remote
 [Repository Bulters-Local]
 type = Maildir
 localfolders = ~/Mail/Bulters
+nametrans = lambda folder: re.sub('sent', '[Gmail]/Sent Mail',
+                           re.sub('flagged', '[Gmail]/Starred',
+                           re.sub('drafts', '[Gmail]/Drafts',
+                           re.sub('trash', '[Gmail]/Trash',
+                           re.sub('spam', '[Gmail]/Spam',
+                           folder)))))
 
 [Repository Holder-Local]
 type = Maildir
 localfolders = ~/Mail/Holder
+nametrans = lambda folder: re.sub('sent', '[Gmail]/Sent Mail',
+                           re.sub('flagged', '[Gmail]/Starred',
+                           re.sub('drafts', '[Gmail]/Drafts',
+                           re.sub('trash', '[Gmail]/Trash',
+                           re.sub('spam', '[Gmail]/Spam',
+                           folder)))))
 
 [Repository HolderService-Local]
 type = Maildir
@@ -29,25 +49,28 @@ localfolders = ~/Mail/HolderService
 
 [Repository Bulters-Remote]
 type = Gmail
+cert_fingerprint = 6d1b5b5ee0180ab493b71d3b94534b5ab937d042
 remoteuser = jeroen@bulte.rs
 remotepasseval = get_keychain_pass(account="jeroen@bulte.rs", server="imap.gmail.com")
 realdelete = no
-nametrans = lambda folder: re.sub('.*Spam$', 'spam', re.sub('.*Drafts$', 'drafts', re.sub('.*Sent Mail$', 'sent', re.sub('.*Starred$', 'flagged', re.sub('.*Trash$', 'trash', re.sub('.*All Mail$', 'archive', folder))))))
+nametrans = lambda folder: re.sub('\[Gmail\]/Spam$', 'spam', re.sub('\[Gmail\]/Drafts$', 'drafts', re.sub('\[Gmail\]/Sent Mail$', 'sent', re.sub('\[Gmail\]/Starred$', 'flagged', re.sub('\[Gmail\]/Trash$', 'trash', re.sub('\[Gmail\]/All Mail$', 'archive', folder))))))
+folderfilter = lambda foldername: foldername not in ['^\[Gmail]\/Important', '^\[Gmail\]\/All\ Mail']
 
 [Repository Holder-Remote]
-type = IMAP
-remotehost = office.holder.nl
-remoteuser = jeroen.bulters
-remotepasseval = get_keychain_pass(account="jeroen.bulters", server="office.holder.nl")
+type = Gmail
+cert_fingerprint = 6d1b5b5ee0180ab493b71d3b94534b5ab937d042
+remoteuser = jeroenbulters@holder.nl
+remotepasseval = get_keychain_pass(account="jeroenbulters@holder.nl", server="imap.gmail.com")
 realdelete = yes
 ssl = yes
-nametrans = lambda folder: re.sub('.*Spam$', 'spam', re.sub('.*Drafts$', 'drafts', re.sub('.*Sent Mail$', 'sent', re.sub('.*Starred$', 'flagged', re.sub('.*Trash$', 'trash', re.sub('.*All Mail$', 'archive', folder))))))
+nametrans = lambda folder: re.sub('\[Gmail\]/Spam$', 'spam', re.sub('\[Gmail\]/Drafts$', 'drafts', re.sub('\[Gmail\]/Sent Mail$', 'sent', re.sub('\[Gmail\]/Starred$', 'flagged', re.sub('\[Gmail\]/Trash$', 'trash', re.sub('\[Gmail\]/All Mail$', 'archive', folder))))))
+folderfilter = lambda foldername: foldername not in ['^\[.*\]\/Important', '^\[.*\]\/All\ Mail']
 
 [Repository HolderService-Remote]
-type = IMAP
-remotehost = office.holder.nl
-remoteuser = servicedienst
-remotepasseval = get_keychain_pass(account="servicedienst", server="office.holder.nl")
+type = Gmail
+cert_fingerprint = 6d1b5b5ee0180ab493b71d3b94534b5ab937d042
+remoteuser = servicedienst@holder.nl
+remotepasseval = get_keychain_pass(account="servicedienst@holder.nl", server="imap.gmail.com")
 realdelete = yes
 ssl = yes
 folderfilter = lambda foldername: foldername in ['INBOX', 'Archief']

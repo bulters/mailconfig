@@ -1,10 +1,9 @@
 #!/bin/bash
+read -r pid < ~/.offlineimap/pid
 
-PID=$(/usr/local/bin/pgrep -f offlineimap)
+if ps $pid &>/dev/null; then
+  echo "offlineimap ($pid): another instance running." >&2
+  kill -9 $pid
+fi
 
-[[ -n "$PID" ]] && kill "$PID"
-
-/usr/local/bin/offlineimap -o -c ~/mailconfig/offlineimaprc -u quiet &>~/offlineimap.log &
-
-exit
-
+offlineimap -o -u quiet &
